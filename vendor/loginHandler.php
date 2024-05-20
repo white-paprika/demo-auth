@@ -55,9 +55,8 @@ if (mysqli_num_rows($check_user) > 0) { // Возвращает количест
     echo 'неправильная почта или пароль';
     die();
 }
-
 // 5. Проверяем, админ или пользователь, редиректим на соответствующую страницу
-if ($user['is_admin'] === 1) {
+if ($user['is_admin'] == 1) {
     header('Location: /admin.php');
 } else {
     header('Location: /user.php');

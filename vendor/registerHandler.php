@@ -59,8 +59,8 @@ mysqli_query($connection, "INSERT INTO `users` (`email`,`username`,`password`, `
 
 //  записываем данные о пользователе в сессию, чтобы использовать их на странице пользователя
 $_SESSION['user'] = [
-    'email' => $user['email'],
-    'username' => $user['username'],
+    'email' => $email,
+    'username' => $username,
 ]; // Присваивает после обновления страницы
 
 
