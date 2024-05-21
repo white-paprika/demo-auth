@@ -17,7 +17,7 @@ index.php - стартовая страница приложения. Она д�
     <input type="text" name="email"><br>
 
     <p>Username</p>
-    <input type="text" name="username"><br>
+    <input type="text" name="login"><br>
 
     <p>Password</p>
     <input type="password" name="password"><br>

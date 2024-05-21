@@ -32,12 +32,12 @@ $password = md5($_POST['password']); // шифруем пароль
  * mysqli_connect($hostname, $username, $password, $database)
  * По дефолту такие значения: mysqli_connect('localhost', 'root', '', 'название_вашей_бд')
  */
-$connection = mysqli_connect('localhost', 'user', 'xsdcwe23', 'auth');
+$connection = mysqli_connect('localhost', 'user', 'xsdcwe23', 'demo');
 /**
  * mysqli_query($подключение, $запрос)
  * В $check_user приходит сырой результат запроса, который нужно преобразовать в ассоциативный массив функцей mysqli_fetch_assoc
  */
-$check_user = mysqli_query($connection, "SELECT * FROM users WHERE email = '$email' AND password = '$password'"); // отправляем запрос
+$check_user = mysqli_query($connection, "SELECT * FROM personal_data WHERE email = '$email' AND password = '$password'"); // отправляем запрос
 
 // В переменную $user придет массив пользователей, которых мы получили в сыром виде строкой выше
 $user = mysqli_fetch_assoc($check_user);
@@ -48,16 +48,12 @@ if (mysqli_num_rows($check_user) > 0) { // Возвращает количест
     //  записываем данные о пользователе в сессию, чтобы использовать их на странице пользователя или админа
     $_SESSION['user'] = [
         'email' => $user['email'],
-        'username' => $user['username'],
+        'login' => $user['login'],
     ]; // Присваивает после обновления страницы
 
 } else {
     echo 'неправильная почта или пароль';
     die();
 }
-// 5. Проверяем, админ или пользователь, редиректим на соответствующую страницу
-if ($user['is_admin'] == 1) {
-    header('Location: /admin.php');
-} else {
-    header('Location: /user.php');
-}
+
+header('Location: /user.php');
